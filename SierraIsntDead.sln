@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{F768CEF6-3B85-F38C-D1F8-7580EECB42C3}") = "SierraIsntDead", "Assembly-CSharp.csproj", "{F4F4F643-C642-D1B0-9F2E-2D8F0C409E12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4F4F643-C642-D1B0-9F2E-2D8F0C409E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F4F643-C642-D1B0-9F2E-2D8F0C409E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F4F643-C642-D1B0-9F2E-2D8F0C409E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F4F643-C642-D1B0-9F2E-2D8F0C409E12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
