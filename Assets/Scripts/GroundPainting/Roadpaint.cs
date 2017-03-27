@@ -15,14 +15,14 @@ public class Roadpaint : MonoBehaviour {
     	// Use this for initialization
 	void Start () {
 
-        TerrainSize = terrainManager.TerrainSize;
+        TerrainSize = TerrainManager.TerrainSize;
 
         bool temp = new bool();
         temp = false;
         ClickPressed.Add(temp);
 
         LastMousePos = Input.mousePosition;
-        LastUVHitSpot = new Vector3();
+        LastUVHitSpot = new Vector3(0, 0, 0);
     }
 	
 	// Update is called once per frame
@@ -42,19 +42,23 @@ public class Roadpaint : MonoBehaviour {
 
         if (ClickPressed[0]) // If pressed
         {
-            Debug.Log("entering");
+            //Debug.Log("entering");
             if (LastMousePos != Input.mousePosition) // If mouse moved
             {
                 LastMousePos = Input.mousePosition; //store it
 
-                Vector3 InstancingUVPos = new Vector3();
+                Vector3 InstancingUVPos = new Vector3(0, 0, 0);
                 if (HitTestUVPosition(ref InstancingUVPos)) //raycasting
                 {
+
+                    //Debug.Log(InstancingUVPos);
                     InstancingUVPos.x = Mathf.Floor(InstancingUVPos.x * TerrainSize.x); // flooring to case
                     InstancingUVPos.y = Mathf.Floor(InstancingUVPos.y * TerrainSize.y);
 
+                    //Debug.Log(LastUVHitSpot);
                     if (InstancingUVPos != LastUVHitSpot) // optimisation: only raytrace when aiming another case
                     {
+                        
                         Debug.Log("hit!");
                         terrainManager.InstantiateRoad(InstancingUVPos);
                         LastUVHitSpot = InstancingUVPos;
@@ -91,6 +95,8 @@ public class Roadpaint : MonoBehaviour {
 
                 return false; // Si le collider n'a pas de mesh, c'est une erreur!
             }
+
+            Debug.Log("Raycasted");
 
             Vector2 pixelUV = new Vector2(hit.textureCoord.x, hit.textureCoord.y); // On choppe la position sur l'uv à l'endroit collidé
 
