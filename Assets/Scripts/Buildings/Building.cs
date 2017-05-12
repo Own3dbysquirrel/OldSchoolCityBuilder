@@ -7,6 +7,8 @@ public class Building : MonoBehaviour {
 	public int size;
 	public int cost;
 
+	public CustomGUIArrayLayout buildingSizeData;
+
 	// Use this for initialization
 	void Start () {
 		
