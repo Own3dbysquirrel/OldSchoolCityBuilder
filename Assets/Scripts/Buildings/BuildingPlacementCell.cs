@@ -9,7 +9,7 @@ public class BuildingPlacementCell : MonoBehaviour {
 	public bool canIBuildHere;
 	public LayerMask layerMask;
 
-	private float gizmoHeight;
+	private float gizmoHeight = 0;
 	private bool isGizmoOutOfBounds;
 
 	// Use this for initialization

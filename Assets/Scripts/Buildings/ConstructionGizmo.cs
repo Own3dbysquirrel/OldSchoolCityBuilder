@@ -109,7 +109,7 @@ public class ConstructionGizmo : MonoBehaviour {
 		offsetZ = -1f;
 
 		buildingPrefabSelected = myPrefab;
-		buildingSizeData = buildingPrefabSelected.GetComponent<Building> ().buildingSizeData;
+		buildingSizeData = buildingPrefabSelected.GetComponent<ConstructionData> ().buildingSizeData;
 
 		CreateGizmoGrid();
 		isBuildingPlacementActive = true;

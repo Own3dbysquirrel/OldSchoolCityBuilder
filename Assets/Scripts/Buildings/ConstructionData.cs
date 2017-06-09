@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour {
+public class ConstructionData : MonoBehaviour {
 
-	public int size;
-	public int cost;
+	public int constructionCost;
 
 	public CustomGUIArrayLayout buildingSizeData;
 

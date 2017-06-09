@@ -46,16 +46,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
      <Compile Include="Assets\Scripts\Buildings\BuildingPlacementCell.cs" />
+     <Compile Include="Assets\Scripts\Buildings\ConstructionData.cs" />
      <Compile Include="Assets\Scripts\Buildings\ConstructionGizmo.cs" />
+     <Compile Include="Assets\Scripts\Buildings\CustomGUIArrayLayout.cs" />
      <Compile Include="Assets\Scripts\Cameras\MainCamera.cs" />
      <Compile Include="Assets\Scripts\Cameras\MiniMap.cs" />
-     <Compile Include="Assets\Scripts\CustomGUIArrayLayout.cs" />
      <Compile Include="Assets\Scripts\GroundPainting\NavWaypoints.cs" />
      <Compile Include="Assets\Scripts\GroundPainting\Roadpaint.cs" />
      <Compile Include="Assets\Scripts\GroundPainting\TerrainManager.cs" />
      <Compile Include="Assets\Scripts\GroundPainting\Waypoint.cs" />
+     <Compile Include="Assets\Scripts\Units\Gatherer.cs" />
      <None Include="Assets\Scripts\GroundPainting\s_ComputeUVs.compute" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5.5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
