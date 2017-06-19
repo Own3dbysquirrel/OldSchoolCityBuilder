@@ -8,18 +8,22 @@ public class MainCamera : MonoBehaviour {
 	public Camera minimapCamera;
 	public GameObject minimapImage;
 	public string cameraOrientation = "North";
+    public float camSpeed;
 
-	public int zoomSpeed = 2;
-	public float camSpeed;
+    public float zoomSpeed = 1;
+    public int minZoom = 1;
+    public int maxZoom = 20;
 
+   
 	private int inputDirection = 1;
 	private int inputDirection2 = 1;
 
 	[Space(20)]
 	public LineRenderer trapezoid;
+    public LayerMask minimapMask;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 
@@ -62,11 +66,11 @@ public class MainCamera : MonoBehaviour {
 
 
 		// Molette Zoom et Dézoom
-		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && mainCamera.orthographicSize > 2) {
-			mainCamera.orthographicSize -= zoomSpeed;
+		if (Input.GetAxis ("Mouse ScrollWheel") > 0 && mainCamera.fieldOfView > minZoom) {
+			mainCamera.fieldOfView -= zoomSpeed;
 		} 
-		else if (Input.GetAxis ("Mouse ScrollWheel") < 0) {
-			mainCamera.orthographicSize += zoomSpeed;
+		else if (Input.GetAxis ("Mouse ScrollWheel") < 0 && mainCamera.fieldOfView < maxZoom) {
+			mainCamera.fieldOfView += zoomSpeed;
 		}
 
 
@@ -79,34 +83,51 @@ public class MainCamera : MonoBehaviour {
 
 
 
-		// Création de raycast à chaque coin de la camera pour créer le trapèze sur la minimap
+        // Création de raycast à chaque coin de la camera pour créer le trapèze sur la minimap
+        // Code qui fonctionne pour une caméra orthographique
+        /*
+            RaycastHit myRay;
 
-		RaycastHit myRay;
-					
-		if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (0,0,0)), gameObject.transform.forward, out myRay, 10000.0f))
-			trapezoid.SetPosition (0,  myRay.point);
-		
+            if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (0,0,0)), gameObject.transform.forward, out myRay, 10000.0f))
+                trapezoid.SetPosition (0,  myRay.point);
 
-		if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (0,1,0)), gameObject.transform.forward, out myRay, 10000.0f))
-			trapezoid.SetPosition (1,  myRay.point);
-		
-		if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (1,1,0)), gameObject.transform.forward, out myRay, 10000.0f))
-			trapezoid.SetPosition (2,  myRay.point);
-		
-		if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (1,0,0)), gameObject.transform.forward, out myRay, 10000.0f))
-			trapezoid.SetPosition (3,  myRay.point);
-		
-		if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (0,0,0)), gameObject.transform.forward, out myRay, 10000.0f))
-			trapezoid.SetPosition (4,  myRay.point);
-		
+            if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (0,1,0)), gameObject.transform.forward, out myRay, 10000.0f))
+                trapezoid.SetPosition (1,  myRay.point);
+
+            if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (1,1,0)), gameObject.transform.forward, out myRay, 10000.0f))
+                trapezoid.SetPosition (2,  myRay.point);
+
+            if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (1,0,0)), gameObject.transform.forward, out myRay, 10000.0f))
+                trapezoid.SetPosition (3,  myRay.point);
+
+            if (Physics.Raycast(mainCamera.ViewportToWorldPoint (new Vector3 (0,0,0)), gameObject.transform.forward, out myRay, 10000.0f))
+                trapezoid.SetPosition (4,  myRay.point);
+
+        */
+
+        RaycastHit myRayHit;
+             
+
+        if (Physics.Raycast(mainCamera.ViewportPointToRay(new Vector3(0, 0, 0)), out myRayHit, 10000f, minimapMask))
+            trapezoid.SetPosition(0, myRayHit.point);
+
+        if (Physics.Raycast(mainCamera.ViewportPointToRay(new Vector3(0, 1, 0)), out myRayHit, 10000f, minimapMask))
+            trapezoid.SetPosition(1, myRayHit.point);
+
+        if (Physics.Raycast(mainCamera.ViewportPointToRay(new Vector3(1, 1, 0)), out myRayHit, 10000f, minimapMask))
+            trapezoid.SetPosition(2, myRayHit.point);
+
+        if (Physics.Raycast(mainCamera.ViewportPointToRay(new Vector3(1, 0, 0)), out myRayHit, 10000f, minimapMask))
+            trapezoid.SetPosition(3, myRayHit.point);
+
+        if (Physics.Raycast(mainCamera.ViewportPointToRay(new Vector3(0, 0, 0)), out myRayHit, 10000f, minimapMask))
+            trapezoid.SetPosition(4, myRayHit.point);
 
 
 
 
 
-
-
-	}
+    }
 
 	public void RotateCamera()
 	{
