@@ -88,13 +88,16 @@ public class TerrainManager : MonoBehaviour {
         RTcam.transform.position = TempPos;
 
 
-            // F Set RenderTexture ****************
-        
+        // F Set RenderTexture ****************
+
+                //Idées: Utiliser le depth buffer pour stocker plus d'infos? Pas bien, car c'est du HDR! (sauf si on arrive à écrire bit par bit)
 
         myRT = new RenderTexture(tmpMax, tmpMax, 8);
+        myRT.filterMode = FilterMode.Point;
         //myRT.enableRandomWrite = true; // allows use for Compute Shaders.
         myRT.Create();
         RTcam.targetTexture = myRT;
+        // RTcam.SetTargetBuffers(myRT.colorBuffer, myRT.depthBuffer); // Suite in Cam_MRT.cs
 
         //Apply Texture to terrain
         TerrainRoot.GetChild(0).GetComponent<Renderer>().material.SetTexture("_MainTex", myRT);
